@@ -54,6 +54,7 @@
   <div class="container">
     <h1>Welcome, <%= username %>!</h1>
     <form action="/dashboard" method="post">
+      <label>Enter a word for knowing its dictionary definition and phonetic script.</label>
       <input type="hidden" name="username" value="<%= username %>">
       <input type="text" name="word" placeholder="Enter a word" required>
       <button type="submit">Search</button>
