@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard</title>
+  <link rel="stylesheet" href="/styles.css">
+  <style>
+    body {
+      background-image: linear-gradient(45deg, #FA8BFF 0%, #2BD2FF 52%, #2BFF88 90%);
+      color: #ffffff;
+      font-family: Arial, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+    .container {
+      text-align: center;
+      background: rgba(0, 0, 0, 0.5);
+      padding: 30px;
+      border-radius: 10px;
+    }
+    input[type="text"] {
+      padding: 10px;
+      border-radius: 5px;
+      border: none;
+      margin: 10px 0;
+      width: 80%;
+    }
+    button {
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      background-color: #2BFF88;
+      color: #000;
+      cursor: pointer;
+      font-size: 16px;
+    }
+    button:hover {
+      background-color: #2BD2FF;
+    }
+    .definition {
+      margin-top: 20px;
+      background: #ffffff;
+      color: #000;
+      padding: 10px;
+      border-radius: 5px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Welcome, <%= username %>!</h1>
+    <form action="/dashboard" method="post">
+      <input type="hidden" name="username" value="<%= username %>">
+      <input type="text" name="word" placeholder="Enter a word" required>
+      <button type="submit">Search</button>
+    </form>
+    <% if (word && definition) { %>
+      <div class="definition">
+        <h2><%= word %></h2>
+        <p><strong>Definition:</strong> <%= definition %></p><br>
+        <% if (phonetic) { %>
+          <p><strong>Phonetic:</strong> <%= phonetic %></p><br>
+        <% } %>
+        <% if (partOfSpeech) { %>
+          <p><strong>Part of Speech:</strong> <%= partOfSpeech %></p><br>
+        <% } %>
+        <% if (audio) { %>
+          <p><strong>Audio:</strong> <audio controls src="<%= audio %>"></audio></p><br>
+        <% } %>
+        <% if (example) { %>
+          <p><strong>Example:</strong> <%= example %></p>
+        <% } %>
+      </div>
+    <% } %>
+  </div>
+</body>
+</html>
